@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import MovieCard from 'components/MovieCard/MovieCard';
 import { Notify } from 'notiflix';
@@ -23,20 +23,7 @@ const MovieDetails = () => {
     getMovieDetails();
   }, [movieId]);
 
-  return (
-    <>
-      {movie && <MovieCard movie={movie} />}
-      <ul>
-        <li>
-          <Link to="cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Outlet />
-    </>
-  );
+  return <>{movie && <MovieCard movie={movie} />}</>;
 };
 
 export default MovieDetails;

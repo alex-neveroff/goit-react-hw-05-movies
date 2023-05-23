@@ -1,11 +1,55 @@
-import React from 'react';
+import { Notify } from 'notiflix';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-// /movies/get-movie-credits запит інформації про акторський склад для сторінки кінофільму.
+import getMovies from 'sevices/api';
+import { CastGallery } from './Cast.styled';
 
 const Cast = () => {
+  const [actors, setActors] = useState([]);
   const { movieId } = useParams();
-  return <div>Cast: {movieId}</div>;
+
+  useEffect(() => {
+    const getCastDetails = async () => {
+      try {
+        const { cast } = await getMovies(`/movie/${movieId}/credits`);
+        setActors(cast);
+      } catch (error) {
+        Notify.failure(error.message);
+      }
+    };
+
+    getCastDetails();
+  }, [movieId]);
+
+  return (
+    <CastGallery>
+      <h3 className="title">Movie cast</h3>
+      <ul className="cast-list">
+        {actors.map(actor => {
+          const actorPhoto = actor.profile_path
+            ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+            : 'https://raw.githubusercontent.com/alex-neveroff/templates/main/images/slider/unknown.jpg';
+          return (
+            <li className="cast-item" key={actor.id}>
+              <img
+                className="actor-photo"
+                src={actorPhoto}
+                alt={actor.name}
+                width="200"
+                height="300"
+              />
+              <p className="actor-text">
+                <b>{actor.name}</b>
+              </p>
+              <p className="actor-text">
+                <b>Сharacter:</b> {actor.character}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    </CastGallery>
+  );
 };
 
 export default Cast;

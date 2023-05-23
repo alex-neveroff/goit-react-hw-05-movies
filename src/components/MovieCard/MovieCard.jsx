@@ -1,4 +1,6 @@
 import React from 'react';
+import { CastReviewsCard, MovieDetailsCard } from './MovieCard.styled';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
   const {
@@ -19,19 +21,46 @@ const MovieCard = ({ movie }) => {
   const votePercentage = (vote_average * 10).toFixed() + '%';
 
   return (
-    <div>
-      <img src={poster} alt={title} />
-      <h2>Title: {title}</h2>
-      <h3>Tagline</h3>
-      <p>{tagline}</p>
-      <h3>Overview</h3>
-      <p>{overview}</p>
-      <h3>Description</h3>
-      <p>Release date: {release_date}</p>
-      <p>Genres: {movieGenres}</p>
-      <p>Country: {movieCountries}</p>
-      <p>User score: {votePercentage}</p>
-    </div>
+    <>
+      <MovieDetailsCard>
+        <img
+          className="card-poster"
+          src={poster}
+          alt={title}
+          width="300"
+          height="450"
+        />
+        <div className="card-wrap">
+          <h2 className="card-title">{title}</h2>
+          <h3 className="card-subtitle">Tagline</h3>
+          <p className="card-text">{tagline}</p>
+          <h3 className="card-subtitle">Overview</h3>
+          <p className="card-text">{overview}</p>
+          <h3 className="card-subtitle">Description</h3>
+          <p className="card-text">
+            <b>Release date:</b> {release_date}
+          </p>
+          <p className="card-text">
+            <b>Genres:</b> {movieGenres}
+          </p>
+          <p className="card-text">
+            <b>Country:</b> {movieCountries}
+          </p>
+          <p className="card-text">
+            <b>User score:</b> {votePercentage}
+          </p>
+        </div>
+      </MovieDetailsCard>
+      <CastReviewsCard>
+        <NavLink className="menu" to="cast">
+          Cast
+        </NavLink>
+        <NavLink className="menu" to="reviews">
+          Reviews
+        </NavLink>
+      </CastReviewsCard>
+      <Outlet />
+    </>
   );
 };
 
