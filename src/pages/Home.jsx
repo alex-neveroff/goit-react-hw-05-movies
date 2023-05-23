@@ -1,7 +1,7 @@
 import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
 import { Notify } from 'notiflix';
 import React, { useEffect, useState } from 'react';
-import { getMovies } from 'sevices/api';
+import getMovies from 'sevices/api';
 
 const Home = () => {
   const [tradingMovies, setTradingMovies] = useState([]);

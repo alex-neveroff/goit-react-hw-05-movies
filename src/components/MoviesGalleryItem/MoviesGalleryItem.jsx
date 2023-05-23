@@ -1,5 +1,5 @@
 import React from 'react';
-import { MovieCard } from './MoviesGalleryItem.styled';
+import { GalleryItem } from './MoviesGalleryItem.styled';
 import { Link } from 'react-router-dom';
 
 const MoviesGalleryItem = ({ movie }) => {
@@ -7,7 +7,7 @@ const MoviesGalleryItem = ({ movie }) => {
   const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 
   return (
-    <MovieCard>
+    <GalleryItem>
       <Link to={`movies/${id}`}>
         <img
           className="movie-poster"
@@ -19,7 +19,7 @@ const MoviesGalleryItem = ({ movie }) => {
         <h3 className="movie-title">{title}</h3>
         <p className="movie-year">{release_date}</p>
       </Link>
-    </MovieCard>
+    </GalleryItem>
   );
 };
 
