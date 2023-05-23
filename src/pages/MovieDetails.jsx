@@ -11,20 +11,9 @@ const MovieDetails = () => {
   // /movies/get-movie-details запит повної інформації про фільм для сторінки кінофільму.
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      url: `https://api.themoviedb.org/3/movie/${movieId}`,
-      params: { language: 'en-US' },
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NTE3NTMxOWZmNWZkZjc2OWVmNDRiZjRjNmEyMWQyNyIsInN1YiI6IjY0NmE1YTI1YzM1MTRjMDE1NzdhODcxZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RZQyeFN2AnmNZOpcH1AhIJhuL9Twl396yihm14rTR54',
-      },
-    };
-
     const getMovieDetails = async () => {
       try {
-        const results = await getMovies(options);
+        const results = await getMovies(movieId);
         setMovie(results);
         console.log('state: ', results);
       } catch (error) {

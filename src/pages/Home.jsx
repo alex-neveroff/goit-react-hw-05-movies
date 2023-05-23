@@ -7,20 +7,9 @@ const Home = () => {
   const [tradingMovies, setTradingMovies] = useState([]);
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      url: 'https://api.themoviedb.org/3/trending/movie/day',
-      params: { language: 'en-US' },
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NTE3NTMxOWZmNWZkZjc2OWVmNDRiZjRjNmEyMWQyNyIsInN1YiI6IjY0NmE1YTI1YzM1MTRjMDE1NzdhODcxZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RZQyeFN2AnmNZOpcH1AhIJhuL9Twl396yihm14rTR54',
-      },
-    };
-
     const getTredingMovies = async () => {
       try {
-        const { results } = await getMovies(options);
+        const { results } = await getMovies();
         setTradingMovies([...results]);
       } catch (error) {
         Notify.failure(error.message);
