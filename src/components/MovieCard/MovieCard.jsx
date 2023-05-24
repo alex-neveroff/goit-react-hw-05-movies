@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CastReviewsCard, MovieDetailsCard } from './MovieCard.styled';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
+  const location = useLocation();
+  const backLink = location.state?.from;
   const {
     title,
     poster_path,
@@ -81,10 +83,13 @@ const MovieCard = ({ movie }) => {
         </div>
       </MovieDetailsCard>
       <CastReviewsCard>
-        <NavLink className="menu" to="cast">
+        <NavLink className="card-menu back-menu" to={backLink ?? '/'}>
+          Back
+        </NavLink>
+        <NavLink className="card-menu" to="cast" state={{ from: backLink }}>
           Cast
         </NavLink>
-        <NavLink className="menu" to="reviews">
+        <NavLink className="card-menu" to="reviews" state={{ from: backLink }}>
           Reviews
         </NavLink>
       </CastReviewsCard>

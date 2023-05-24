@@ -2,11 +2,13 @@ import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { Notify } from 'notiflix';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import getMovies from 'sevices/api';
 
 const Movies = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   // const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +21,7 @@ const Movies = () => {
         setLoading(true);
         const { results, total_results } = await getMovies(
           'search/movie',
-          `&query=${query}`
+          query
         );
         if (total_results > 0) {
           Notify.success(`Founded ${total_results} for ${query}`);
@@ -44,10 +46,8 @@ const Movies = () => {
       Notify.warning(`You are already viewing images for "${query}" `);
       return;
     }
-
+    setSearchParams({ query: inputQuery });
     setMovies([]);
-    // setCurrentPage(1);
-    setQuery(inputQuery);
   };
 
   return (

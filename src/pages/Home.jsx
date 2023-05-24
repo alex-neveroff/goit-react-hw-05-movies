@@ -14,7 +14,7 @@ const Home = () => {
         setLoading(true);
         const { results } = await getMovies();
 
-        setTradingMovies([...results]);
+        setTradingMovies(results);
       } catch (error) {
         setError(error.message);
         Notify.failure(error.message);

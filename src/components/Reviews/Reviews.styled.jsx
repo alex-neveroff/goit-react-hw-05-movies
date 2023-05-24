@@ -33,6 +33,7 @@ export const StyledReviews = styled.div`
   .author-name {
     font-size: 18px;
     font-weight: bold;
+    text-align: center;
   }
 
   .author-text {

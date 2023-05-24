@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const MoviesGalleryItem = ({ movie }) => {
   const location = useLocation();
+
   const { title, poster_path, release_date, id } = movie;
   const poster = poster_path
     ? `https://image.tmdb.org/t/p/w500/${poster_path}`
@@ -12,7 +13,10 @@ const MoviesGalleryItem = ({ movie }) => {
 
   return (
     <GalleryItem>
-      <Link to={location.pathname === '/' ? `movies/${id}` : `${id}`}>
+      <Link
+        to={location.pathname === '/' ? `movies/${id}` : `${id}`}
+        state={{ from: location }}
+      >
         <img
           className="movie-poster"
           src={poster}

@@ -10,7 +10,6 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  //     const [error, setError] = useState(null);
 
   useEffect(() => {
     const getMovieDetails = async () => {
