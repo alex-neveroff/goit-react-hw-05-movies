@@ -14,12 +14,15 @@ export const CastGallery = styled.ul`
   }
 
   .cast-item {
-    width: 200px;
+    width: calc((100% - 80px) / 6);
     display: flex;
     flex-direction: column;
     gap: 5px;
+    background-color: #fff;
+    border-radius: 8px;
   }
   .actor-text {
     font-size: 16px;
+    padding-left: 5px;
   }
 `;

@@ -1,20 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-// /search/search-movies пошук фільму за ключовим словом на сторінці фільмів.
+import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
+import SearchForm from 'components/SearchForm/SearchForm';
+import { Notify } from 'notiflix';
+import React, { useEffect, useState } from 'react';
+import getMovies from 'sevices/api';
 
 const Movies = () => {
-  const moviesResults = ['movie1', 'movie2', 'movie3', 'movie4'];
+  const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useState('');
+  // const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    if (!query) return;
+
+    const getMoviesByName = async () => {
+      try {
+        const { results } = await getMovies('search/movie', `&query=${query}`);
+        setMovies([...results]);
+      } catch (error) {
+        Notify.failure(error.message);
+      }
+    };
+
+    getMoviesByName();
+  }, [query]);
+
+  const handleSubmit = inputQuery => {
+    if (inputQuery.toLowerCase() === query.toLowerCase()) {
+      Notify.warning(`You are already viewing images for "${query}" `);
+      return;
+    }
+
+    setMovies([]);
+    // setCurrentPage(1);
+    setQuery(inputQuery);
+  };
+
   return (
-    <ul>
-      {moviesResults.map(movie => {
-        return (
-          <li key={movie}>
-            <Link to={`${movie}`}>{movie}</Link>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <SearchForm onSubmit={handleSubmit} />
+      {movies.length > 0 && <MoviesGallery movies={movies} />}
+    </>
   );
 };
 

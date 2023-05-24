@@ -8,6 +8,7 @@ export const GalleryItem = styled.li`
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
   overflow: hidden;
+  background-color: #fff;
 
   &:active {
     transform: scale(0.97);
@@ -25,6 +26,8 @@ export const GalleryItem = styled.li`
   .movie-poster {
     border-radius: 5px;
     margin-bottom: 10px;
+    width: 300px;
+    height: 450px;
   }
 
   .movie-title {
@@ -35,6 +38,7 @@ export const GalleryItem = styled.li`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-left: 5px;
   }
 
   .movie-year {
@@ -42,5 +46,6 @@ export const GalleryItem = styled.li`
     font-size: 16px;
     font-weight: bold;
     line-height: 1.16;
+    padding-left: 5px;
   }
 `;

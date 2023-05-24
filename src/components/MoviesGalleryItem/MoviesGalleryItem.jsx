@@ -1,20 +1,21 @@
 import React from 'react';
 import { GalleryItem } from './MoviesGalleryItem.styled';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const MoviesGalleryItem = ({ movie }) => {
+  const location = useLocation();
   const { title, poster_path, release_date, id } = movie;
   const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 
   return (
     <GalleryItem>
-      <Link to={`movies/${id}`}>
+      <Link to={location.pathname === '/' ? `movies/${id}` : `${id}`}>
         <img
           className="movie-poster"
           src={poster}
           alt={title}
-          width="298"
-          height="497"
+          width="300"
+          height="450"
         />
         <h3 className="movie-title">{title}</h3>
         <p className="movie-year">{release_date}</p>

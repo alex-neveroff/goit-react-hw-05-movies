@@ -3,7 +3,10 @@ import styled from '@emotion/styled';
 export const MovieDetailsCard = styled.div`
   display: flex;
   gap: 40px;
-  margin-bottom: 40px;
+
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
 
   .card-poster {
     max-height: 750px;
@@ -15,7 +18,6 @@ export const MovieDetailsCard = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 50%;
   }
 
   .card-text {

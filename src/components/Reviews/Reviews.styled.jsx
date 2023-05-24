@@ -17,7 +17,9 @@ export const StyledReviews = styled.div`
     display: flex;
     gap: 50px;
     box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.16);
-    padding-bottom: 15px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
   }
 
   .author-wrap {

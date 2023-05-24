@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 1280px;
   padding-left: 20px;
   padding-right: 20px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
 
   .header {
     width: 100%;
