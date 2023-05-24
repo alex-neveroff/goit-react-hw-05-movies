@@ -14,7 +14,16 @@ const Movies = () => {
 
     const getMoviesByName = async () => {
       try {
-        const { results } = await getMovies('search/movie', `&query=${query}`);
+        const { results, total_results } = await getMovies(
+          'search/movie',
+          `&query=${query}`
+        );
+        if (total_results > 0) {
+          Notify.success(`Founded ${total_results} for ${query}`);
+        } else {
+          Notify.warning(`Founded nothing for ${query}`);
+        }
+
         setMovies([...results]);
       } catch (error) {
         Notify.failure(error.message);
@@ -38,7 +47,9 @@ const Movies = () => {
   return (
     <>
       <SearchForm onSubmit={handleSubmit} />
-      {movies.length > 0 && <MoviesGallery movies={movies} />}
+      {movies.length > 0 && (
+        <MoviesGallery movies={movies} pageTitle={`Movies for "${query}"`} />
+      )}
     </>
   );
 };

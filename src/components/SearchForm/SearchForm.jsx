@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { ReactComponent as SearchIcon } from '../../icons/search.svg';
 import { SearchbarForm } from './SearchForm.styled';
 import { Notify } from 'notiflix';
@@ -12,11 +13,11 @@ const SearchForm = ({ onSubmit }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (inputQuery === '') {
+    if (inputQuery.trim() === '') {
       Notify.warning(`Enter something`);
       return;
     }
-    onSubmit(inputQuery);
+    onSubmit(inputQuery.trim());
     setInputQuery('');
   };
 
@@ -37,6 +38,10 @@ const SearchForm = ({ onSubmit }) => {
       />
     </SearchbarForm>
   );
+};
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchForm;

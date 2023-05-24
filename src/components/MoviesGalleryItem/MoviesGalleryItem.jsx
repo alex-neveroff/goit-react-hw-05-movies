@@ -1,11 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { GalleryItem } from './MoviesGalleryItem.styled';
 import { Link, useLocation } from 'react-router-dom';
 
 const MoviesGalleryItem = ({ movie }) => {
   const location = useLocation();
   const { title, poster_path, release_date, id } = movie;
-  const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  const poster = poster_path
+    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+    : 'https://raw.githubusercontent.com/alex-neveroff/templates/main/images/slider/unknown.jpg';
 
   return (
     <GalleryItem>
@@ -23,5 +26,7 @@ const MoviesGalleryItem = ({ movie }) => {
     </GalleryItem>
   );
 };
+
+MoviesGalleryItem.propTypes = { movie: PropTypes.object.isRequired };
 
 export default MoviesGalleryItem;

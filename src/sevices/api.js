@@ -9,7 +9,7 @@ const getMovies = async (fetchPath = 'trending/movie/day', query = '') => {
     const { data } = await axios.get(
       `${BASE_URL}/${fetchPath}?api_key=${API_KEY}${query}`
     );
-
+    console.log(data);
     return data;
   } catch (error) {
     Notify.failure(error.message);

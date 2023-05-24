@@ -5,6 +5,7 @@ export const StyledReviews = styled.div`
     font-size: 30px;
     text-align: center;
     margin-bottom: 40px;
+    text-transform: uppercase;
   }
 
   .reviews-list {

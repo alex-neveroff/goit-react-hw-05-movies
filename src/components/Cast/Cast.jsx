@@ -24,30 +24,34 @@ const Cast = () => {
   return (
     <CastGallery>
       <h3 className="title">Movie cast</h3>
-      <ul className="cast-list">
-        {actors.map(actor => {
-          const actorPhoto = actor.profile_path
-            ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
-            : 'https://raw.githubusercontent.com/alex-neveroff/templates/main/images/slider/unknown.jpg';
-          return (
-            <li className="cast-item" key={actor.id}>
-              <img
-                className="actor-photo"
-                src={actorPhoto}
-                alt={actor.name}
-                width="200"
-                height="300"
-              />
-              <p className="actor-text">
-                <b>{actor.name}</b>
-              </p>
-              <p className="actor-text">
-                <b>Сharacter:</b> {actor.character}
-              </p>
-            </li>
-          );
-        })}
-      </ul>
+      {actors.length > 0 ? (
+        <ul className="cast-list">
+          {actors.map(actor => {
+            const actorPhoto = actor.profile_path
+              ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+              : 'https://raw.githubusercontent.com/alex-neveroff/templates/main/images/slider/unknown.jpg';
+            return (
+              <li className="cast-item" key={actor.id}>
+                <img
+                  className="actor-photo"
+                  src={actorPhoto}
+                  alt={actor.name}
+                  width="200"
+                  height="300"
+                />
+                <p className="actor-text">
+                  <b>{actor.name}</b>
+                </p>
+                <p className="actor-text">
+                  <b>Сharacter:</b> {actor.character}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p className="actor-text">The cast is still unknown</p>
+      )}
     </CastGallery>
   );
 };

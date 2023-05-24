@@ -27,6 +27,7 @@ export const MovieDetailsCard = styled.div`
   .card-title {
     font-size: 30px;
     text-align: center;
+    text-transform: uppercase;
   }
   .card-subtitle {
     font-size: 24px;

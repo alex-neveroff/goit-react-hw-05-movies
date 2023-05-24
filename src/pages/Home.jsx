@@ -10,6 +10,7 @@ const Home = () => {
     const getTredingMovies = async () => {
       try {
         const { results } = await getMovies();
+
         setTradingMovies([...results]);
       } catch (error) {
         Notify.failure(error.message);
@@ -20,9 +21,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <h1>Trending today</h1> {<MoviesGallery movies={tradingMovies} />}
-    </>
+    <MoviesGallery movies={tradingMovies} pageTitle="Top-20 trending today" />
   );
 };
 

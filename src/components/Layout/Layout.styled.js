@@ -48,4 +48,10 @@ export const Container = styled.div`
       color: darkblue;
     }
   }
+
+  .page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
 `;

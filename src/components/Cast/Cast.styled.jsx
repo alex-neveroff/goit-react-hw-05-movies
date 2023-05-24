@@ -5,6 +5,7 @@ export const CastGallery = styled.ul`
     font-size: 30px;
     text-align: center;
     margin-bottom: 40px;
+    text-transform: uppercase;
   }
 
   .cast-list {
