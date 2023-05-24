@@ -7,14 +7,20 @@ import { CastGallery } from './Cast.styled';
 const Cast = () => {
   const [actors, setActors] = useState([]);
   const { movieId } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getCastDetails = async () => {
       try {
+        setLoading(true);
         const { cast } = await getMovies(`/movie/${movieId}/credits`);
         setActors(cast);
       } catch (error) {
+        setError(error.message);
         Notify.failure(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -24,6 +30,8 @@ const Cast = () => {
   return (
     <CastGallery>
       <h3 className="title">Movie cast</h3>
+      {loading && <p>Loading...</p>}
+      {Boolean(error !== null) && <p>Error: {error}</p>}
       {actors.length > 0 ? (
         <ul className="cast-list">
           {actors.map(actor => {

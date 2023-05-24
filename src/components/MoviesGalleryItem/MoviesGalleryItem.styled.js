@@ -24,7 +24,7 @@ export const GalleryItem = styled.li`
   }
 
   .movie-poster {
-    border-radius: 5px;
+    border-bottom: 1px solid #adb7c3;
     margin-bottom: 10px;
     width: 300px;
     height: 450px;

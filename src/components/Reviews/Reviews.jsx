@@ -7,14 +7,20 @@ import { StyledReviews } from './Reviews.styled';
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getCastDetails = async () => {
       try {
+        setLoading(true);
         const { results } = await getMovies(`/movie/${movieId}/reviews`);
         setReviews(results);
       } catch (error) {
+        setError(error.message);
         Notify.failure(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -24,6 +30,8 @@ const Reviews = () => {
   return (
     <StyledReviews>
       <h2 className="title">Movie reviews</h2>
+      {loading && <p>Loading...</p>}
+      {Boolean(error !== null) && <p>Error: {error}</p>}
       {reviews.length === 0 && <p>There are no reviews for this movie yet.</p>}
       <ul className="reviews-list">
         {reviews.map(review => {

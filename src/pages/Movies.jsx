@@ -7,6 +7,8 @@ import getMovies from 'sevices/api';
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   // const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -14,6 +16,7 @@ const Movies = () => {
 
     const getMoviesByName = async () => {
       try {
+        setLoading(true);
         const { results, total_results } = await getMovies(
           'search/movie',
           `&query=${query}`
@@ -26,7 +29,10 @@ const Movies = () => {
 
         setMovies([...results]);
       } catch (error) {
+        setError(error.message);
         Notify.failure(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -47,6 +53,8 @@ const Movies = () => {
   return (
     <>
       <SearchForm onSubmit={handleSubmit} />
+      {loading && <p>Loading...</p>}
+      {Boolean(error !== null) && <p>Error: {error}</p>}
       {movies.length > 0 && (
         <MoviesGallery movies={movies} pageTitle={`Movies for "${query}"`} />
       )}
