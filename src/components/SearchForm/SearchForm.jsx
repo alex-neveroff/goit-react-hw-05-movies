@@ -32,7 +32,7 @@ const SearchForm = ({ onSubmit }) => {
         type="text"
         autoComplete="off"
         autoFocus
-        placeholder="Search images and photos"
+        placeholder="Search movies by name"
         value={inputQuery}
         onChange={handleSearch}
       />
