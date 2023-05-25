@@ -33,7 +33,7 @@ const Cast = () => {
       <h3 className="title">Movie cast</h3>
       {loading && <Loader />}
       {Boolean(error !== null) && <p>Error: {error}</p>}
-      {actors.length > 0 ? (
+      {actors.length > 0 && (
         <ul className="cast-list">
           {actors.map(actor => {
             const actorPhoto = actor.profile_path
@@ -58,9 +58,8 @@ const Cast = () => {
             );
           })}
         </ul>
-      ) : (
-        <p className="no-text">The cast is still unknown</p>
       )}
+      {!loading && <p className="no-text">The cast is still unknown</p>}
     </CastGallery>
   );
 };

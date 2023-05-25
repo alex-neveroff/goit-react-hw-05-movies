@@ -33,7 +33,7 @@ const Reviews = () => {
       <h2 className="title">Movie reviews</h2>
       {loading && <Loader />}
       {Boolean(error !== null) && <p>Error: {error}</p>}
-      {reviews.length > 0 ? (
+      {reviews.length > 0 && (
         <ul className="reviews-list">
           {reviews.map(review => {
             const authorphoto = review.author_details.avatar_path;
@@ -60,7 +60,8 @@ const Reviews = () => {
             );
           })}
         </ul>
-      ) : (
+      )}{' '}
+      {!loading && (
         <p className="no-text">There are no reviews for this movie yet.</p>
       )}
     </StyledReviews>

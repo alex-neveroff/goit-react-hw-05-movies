@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { CastReviewsCard, MovieDetailsCard } from './MovieCard.styled';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Suspense } from 'react';
+import Loader from 'components/Loader/Loader';
 
 const MovieCard = ({ movie }) => {
   const location = useLocation();
@@ -93,7 +95,9 @@ const MovieCard = ({ movie }) => {
           Reviews
         </NavLink>
       </CastReviewsCard>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
