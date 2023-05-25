@@ -20,6 +20,7 @@ const Home = () => {
           'trending/movie/day',
           currentPage
         );
+
         setTradingMovies(prevResults => [...prevResults, ...results]);
         showLoadMoreButton(total_pages);
       } catch (error) {
@@ -44,7 +45,7 @@ const Home = () => {
     <>
       {loading && <Loader />}
       {Boolean(error !== null) && <p>Error: {error}</p>}
-      {tradingMovies && (
+      {tradingMovies.length > 0 && (
         <MoviesGallery movies={tradingMovies} pageTitle="Trending today" />
       )}
       {isShowLoadMore && !loading && (
