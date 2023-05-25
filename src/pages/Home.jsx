@@ -1,20 +1,26 @@
-import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
-import { Notify } from 'notiflix';
 import React, { useEffect, useState } from 'react';
 import getMovies from 'sevices/api';
+import { Notify } from 'notiflix';
+import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
+import Button from 'components/Button/Button';
 
 const Home = () => {
   const [tradingMovies, setTradingMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isShowLoadMore, setIsShowLoadMore] = useState(false);
 
   useEffect(() => {
     const getTredingMovies = async () => {
       try {
         setLoading(true);
-        const { results } = await getMovies();
-
-        setTradingMovies(results);
+        const { results, total_pages } = await getMovies(
+          'trending/movie/day',
+          currentPage
+        );
+        setTradingMovies(prevResults => [...prevResults, ...results]);
+        showLoadMoreButton(total_pages);
       } catch (error) {
         setError(error.message);
         Notify.failure(error.message);
@@ -22,18 +28,29 @@ const Home = () => {
         setLoading(false);
       }
     };
+    const showLoadMoreButton = totalPages => {
+      if (totalPages === currentPage) {
+        setIsShowLoadMore(false);
+        return;
+      }
+      setIsShowLoadMore(true);
+    };
 
     getTredingMovies();
-  }, []);
+  }, [currentPage]);
 
   return (
     <>
       {loading && <p>Loading...</p>}
       {Boolean(error !== null) && <p>Error: {error}</p>}
       {tradingMovies && (
-        <MoviesGallery
-          movies={tradingMovies}
-          pageTitle="Top-20 trending today"
+        <MoviesGallery movies={tradingMovies} pageTitle="Trending today" />
+      )}
+      {isShowLoadMore && !loading && (
+        <Button
+          onClick={() => {
+            setCurrentPage(prevPage => prevPage + 1);
+          }}
         />
       )}
     </>

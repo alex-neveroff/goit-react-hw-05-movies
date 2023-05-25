@@ -1,3 +1,4 @@
+import Button from 'components/Button/Button';
 import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { Notify } from 'notiflix';
@@ -11,7 +12,8 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  // const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isShowLoadMore, setIsShowLoadMore] = useState(false);
 
   useEffect(() => {
     if (!query) return;
@@ -19,18 +21,18 @@ const Movies = () => {
     const getMoviesByName = async () => {
       try {
         setLoading(true);
-        const { results, total_results } = await getMovies(
+        const { results, total_results, total_pages } = await getMovies(
           'search/movie',
+          currentPage,
           query
-          // currentPage
         );
         if (total_results > 0) {
           Notify.success(`Founded ${total_results} for ${query}`);
         } else {
           Notify.warning(`Founded nothing for ${query}`);
         }
-        // setCurrentPage(prevPage => prevPage + 1);
         setMovies(prevResults => [...prevResults, ...results]);
+        showLoadMoreButton(total_pages);
       } catch (error) {
         setError(error.message);
         Notify.failure(error.message);
@@ -39,8 +41,16 @@ const Movies = () => {
       }
     };
 
+    const showLoadMoreButton = totalPages => {
+      if (totalPages === currentPage) {
+        setIsShowLoadMore(false);
+        return;
+      }
+      setIsShowLoadMore(true);
+    };
+
     getMoviesByName();
-  }, [query]);
+  }, [currentPage, query]);
 
   const handleSubmit = inputQuery => {
     if (inputQuery.toLowerCase() === query.toLowerCase()) {
@@ -49,7 +59,7 @@ const Movies = () => {
     }
     setSearchParams({ query: inputQuery });
     setMovies([]);
-    // setCurrentPage(1);
+    setCurrentPage(1);
   };
 
   return (
@@ -59,6 +69,13 @@ const Movies = () => {
       {Boolean(error !== null) && <p>Error: {error}</p>}
       {movies.length > 0 && (
         <MoviesGallery movies={movies} pageTitle={`Movies for "${query}"`} />
+      )}
+      {isShowLoadMore && !loading && (
+        <Button
+          onClick={() => {
+            setCurrentPage(prevPage => prevPage + 1);
+          }}
+        />
       )}
     </>
   );
