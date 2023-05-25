@@ -14,7 +14,6 @@ export const LoadMoreButton = styled.button`
   line-height: 24px;
   font-style: normal;
   font-weight: 500;
-  margin: 0 auto;
   width: 180px;
   height: 60px;
   color: #fff;

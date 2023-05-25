@@ -1,12 +1,30 @@
 import styled from '@emotion/styled';
 
-export const SearchbarForm = styled.form`
-  display: flex;
-  align-items: center;
-  width: 500px;
-  background-color: #fff;
+export const Searchbar = styled.div`
   margin-bottom: 30px;
-  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .message {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding-left: 10px;
+    width: 600px;
+    height: 50px;
+    background-color: #fff;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  .searchbar-form {
+    display: flex;
+    align-items: center;
+    width: 600px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
 
   .searchbar-button {
     display: inline-block;

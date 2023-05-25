@@ -74,4 +74,10 @@ export const Container = styled.div`
       color: #fff;
     }
   }
+
+  .buttons-block {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
 `;

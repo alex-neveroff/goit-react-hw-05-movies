@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <Container>
       <header className="header">
-        <p className="logo">Кінопошук</p>
+        <p className="logo">MovieSearcher</p>
         <nav className="navigation">
           <NavLink className="menu" to="/">
             Home
