@@ -4,7 +4,7 @@ export const GalleryItem = styled.li`
   cursor: pointer;
   border-radius: 5px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  width: calc((100% - 48px) / 4);
+  width: calc((100% - 64px) / 5);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
   overflow: hidden;
@@ -26,8 +26,8 @@ export const GalleryItem = styled.li`
   .movie-poster {
     border-bottom: 1px solid #adb7c3;
     margin-bottom: 10px;
-    width: 300px;
-    height: 450px;
+    width: 235px;
+    height: 354px;
   }
 
   .movie-title {

@@ -59,7 +59,9 @@ const Cast = () => {
           })}
         </ul>
       )}
-      {!loading && <p className="no-text">The cast is still unknown</p>}
+      {actors.length === 0 && !loading && (
+        <p className="no-text">The cast is still unknown</p>
+      )}
     </CastGallery>
   );
 };

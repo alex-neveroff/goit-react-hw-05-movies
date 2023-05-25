@@ -61,7 +61,7 @@ const Reviews = () => {
           })}
         </ul>
       )}{' '}
-      {!loading && (
+      {reviews.length === 0 && !loading && (
         <p className="no-text">There are no reviews for this movie yet.</p>
       )}
     </StyledReviews>
