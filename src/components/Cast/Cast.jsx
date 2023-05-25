@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getMovies from 'sevices/api';
 import { CastGallery } from './Cast.styled';
+import Loader from 'components/Loader/Loader';
 
 const Cast = () => {
   const [actors, setActors] = useState([]);
@@ -30,7 +31,7 @@ const Cast = () => {
   return (
     <CastGallery>
       <h3 className="title">Movie cast</h3>
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {Boolean(error !== null) && <p>Error: {error}</p>}
       {actors.length > 0 ? (
         <ul className="cast-list">

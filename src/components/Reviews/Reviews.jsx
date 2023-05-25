@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import getMovies from 'sevices/api';
 import { StyledReviews } from './Reviews.styled';
+import Loader from 'components/Loader/Loader';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -30,7 +31,7 @@ const Reviews = () => {
   return (
     <StyledReviews>
       <h2 className="title">Movie reviews</h2>
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {Boolean(error !== null) && <p>Error: {error}</p>}
       {reviews.length > 0 ? (
         <ul className="reviews-list">

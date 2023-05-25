@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import MovieCard from 'components/MovieCard/MovieCard';
 import { Notify } from 'notiflix';
 import getMovies from 'sevices/api';
+import Loader from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -30,7 +31,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {Boolean(error !== null) && <p>Error: {error}</p>}
       {movie && <MovieCard movie={movie} />}
     </>

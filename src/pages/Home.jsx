@@ -3,6 +3,7 @@ import getMovies from 'sevices/api';
 import { Notify } from 'notiflix';
 import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
 import Button from 'components/Button/Button';
+import Loader from 'components/Loader/Loader';
 
 const Home = () => {
   const [tradingMovies, setTradingMovies] = useState([]);
@@ -41,7 +42,7 @@ const Home = () => {
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {Boolean(error !== null) && <p>Error: {error}</p>}
       {tradingMovies && (
         <MoviesGallery movies={tradingMovies} pageTitle="Trending today" />

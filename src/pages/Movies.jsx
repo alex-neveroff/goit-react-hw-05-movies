@@ -1,4 +1,5 @@
 import Button from 'components/Button/Button';
+import Loader from 'components/Loader/Loader';
 import MoviesGallery from 'components/MoviesGallery/MoviesGallery';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { Notify } from 'notiflix';
@@ -65,7 +66,7 @@ const Movies = () => {
   return (
     <>
       <SearchForm onSubmit={handleSubmit} />
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
       {Boolean(error !== null) && <p>Error: {error}</p>}
       {movies.length > 0 && (
         <MoviesGallery movies={movies} pageTitle={`Movies for "${query}"`} />
