@@ -83,13 +83,13 @@ const MovieCard = ({ movie }) => {
         </div>
       </MovieDetailsCard>
       <CastReviewsCard>
-        <NavLink className="card-menu back-menu" to={backLink ?? '/'}>
+        <NavLink className="menu back-menu" to={backLink ?? '/'}>
           Back
         </NavLink>
-        <NavLink className="card-menu" to="cast" state={{ from: backLink }}>
+        <NavLink className="menu" to="cast" state={{ from: backLink }}>
           Cast
         </NavLink>
-        <NavLink className="card-menu" to="reviews" state={{ from: backLink }}>
+        <NavLink className="menu" to="reviews" state={{ from: backLink }}>
           Reviews
         </NavLink>
       </CastReviewsCard>

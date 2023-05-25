@@ -58,7 +58,7 @@ const Cast = () => {
           })}
         </ul>
       ) : (
-        <p className="actor-text">The cast is still unknown</p>
+        <p className="no-text">The cast is still unknown</p>
       )}
     </CastGallery>
   );

@@ -40,4 +40,7 @@ export const StyledReviews = styled.div`
     font-size: 20px;
     width: 1000px;
   }
+  .no-text {
+    font-size: 24px;
+  }
 `;

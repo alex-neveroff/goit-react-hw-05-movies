@@ -37,28 +37,5 @@ export const MovieDetailsCard = styled.div`
 export const CastReviewsCard = styled.div`
   display: flex;
   gap: 40px;
-
-  .card-menu {
-    cursor: pointer;
-    font-size: 26px;
-    font-weight: bold;
-    width: 150px;
-    height: 60px;
-    border-radius: 8px;
-    background-color: #ff7f7f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &:hover {
-      box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.3);
-    }
-
-    &.active {
-      color: darkblue;
-    }
-  }
-
-  .back-menu {
-  }
+  margin-bottom: 20px;
 `;

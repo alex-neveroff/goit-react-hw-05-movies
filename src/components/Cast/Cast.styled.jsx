@@ -26,4 +26,7 @@ export const CastGallery = styled.ul`
     font-size: 16px;
     padding-left: 5px;
   }
+  .no-text {
+    font-size: 24px;
+  }
 `;

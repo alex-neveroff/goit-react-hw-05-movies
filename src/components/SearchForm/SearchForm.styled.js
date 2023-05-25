@@ -3,11 +3,10 @@ import styled from '@emotion/styled';
 export const SearchbarForm = styled.form`
   display: flex;
   align-items: center;
-  width: 100%;
-  max-width: 500px;
+  width: 500px;
   background-color: #fff;
-  border-radius: 5px;
   margin-bottom: 30px;
+  border-radius: 8px;
 
   .searchbar-button {
     display: inline-block;
@@ -27,7 +26,7 @@ export const SearchbarForm = styled.form`
   .searchbar-input {
     display: inline-block;
     width: 100%;
-    height: 35px;
+    height: 50px;
     font: inherit;
     font-size: 20px;
     border: none;

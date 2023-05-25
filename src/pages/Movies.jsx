@@ -22,14 +22,15 @@ const Movies = () => {
         const { results, total_results } = await getMovies(
           'search/movie',
           query
+          // currentPage
         );
         if (total_results > 0) {
           Notify.success(`Founded ${total_results} for ${query}`);
         } else {
           Notify.warning(`Founded nothing for ${query}`);
         }
-
-        setMovies([...results]);
+        // setCurrentPage(prevPage => prevPage + 1);
+        setMovies(prevResults => [...prevResults, ...results]);
       } catch (error) {
         setError(error.message);
         Notify.failure(error.message);
@@ -48,6 +49,7 @@ const Movies = () => {
     }
     setSearchParams({ query: inputQuery });
     setMovies([]);
+    // setCurrentPage(1);
   };
 
   return (
